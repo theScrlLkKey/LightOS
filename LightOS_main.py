@@ -144,7 +144,7 @@ enckey = write_key()
 
 def console_log(log_text):
     try:
-        with open('log.txt', 'a+') as data:
+        with open('log/log.txt', 'a+') as data:
             data.write(log_text + '\n')
     except:
         pass

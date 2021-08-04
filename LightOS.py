@@ -33,19 +33,28 @@ if not release:
 print('Starting LightOS...')
 if not release:
     try:
-        with open('ll.bat', 'r') as data:
+        with open('log/ll.bat', 'r') as data:
             data.read()
     except:
-        with open('ll.bat', 'w+') as data:
-            data.write('echo off\npowershell -nologo "& "get-content log.txt -wait -tail 1"\npause')
-        with open('plugins/pll.bat', 'w+') as data:
-            data.write('echo off\npowershell -nologo "& "get-content plugins\log.txt -wait -tail 1"\npause')
+        os.mkdir('log')
+        with open('log/ll.bat', 'w+') as data:
+            data.write('echo off\npowershell -nologo "& "get-content log\log.txt -wait -tail 1"\npause')
+
+        os.chdir('plugins')
+        os.mkdir('log')
+        os.chdir('..')
+        with open('plugins/log/ll.bat', 'w+') as data:
+            data.write('echo off\npowershell -nologo "& "get-content plugins\log\log.txt -wait -tail 1"\npause')
+
+        with open('plugins/log/log.txt', 'w+') as log:
+            log.write('')
+
 
     # with open('log.txt', 'w+') as log:
     #     log.write('')
 
-    os.startfile('ll.bat')
-    os.startfile('plugins\pll.bat')
+    os.startfile('log\ll.bat')
+    os.startfile('plugins\log\ll.bat')
 
 
 try:
