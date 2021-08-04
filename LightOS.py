@@ -31,6 +31,20 @@ if not release:
 
 
 print('Starting LightOS...')
+if not release:
+    try:
+        with open('ll.bat', 'r') as data:
+            data.read()
+    except:
+        with open('ll.bat', 'w+') as data:
+            data.write('echo off\npowershell -nologo "& "get-content log.txt -wait -tail 1"\npause')
+
+    # with open('log.txt', 'w+') as log:
+    #     log.write('')
+
+    os.startfile('ll.bat')
+
+
 try:
     subprocess.call(['py', '-3', 'LightOS_main.py'], creationflags=subprocess.CREATE_NEW_CONSOLE)
 

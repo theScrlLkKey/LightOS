@@ -142,6 +142,14 @@ def write_key():
 enckey = write_key()
 
 
+def console_log(log_text):
+    try:
+        with open('log.txt', 'a+') as data:
+            data.write(log_text + '\n')
+    except:
+        pass
+
+
 def on_press(key):
     global key_jp
     if hasattr(key, 'char'):  # Write the character pressed if available
@@ -945,7 +953,7 @@ except:
     encrypt_emb2('data.txt', '', enckey, 'gtTfs7Adh6G3j835GkdsJFYU86389llke')
 
 
-
+console_log('drawing password screen')
 type(usenmpw_menu)
 inputchar('\033[11A')
 inputchar('\033[5;23H')
@@ -956,8 +964,10 @@ if name + '_pw' in usenmls:
     if usenmls[name + '_pw'] != passwd:
         inputchar('\033[9;23H')
         type(f'WRONG PASSWORD FOR {name}!')
+        console_log('password for '+name+'was not correct')
         exit()
 else:
+    console_log('password for ' + name + 'was correct')
     inputchar('\033[2J')
     type(loadingscr)
     inputchar('\033[11A')
@@ -970,6 +980,7 @@ else:
     # with open('data.txt', 'a') as data:
     #     data.write(f'usenmls["{name}_pw"] = "{passwd}" \n')
 
+console_log('name inputted is '+name)
 
 try:
     with open(f'{name}_settings.txt', 'r') as sett:
@@ -1003,6 +1014,7 @@ curmen = 'main'
 #main
 lisn = threading.Thread(target=strtlstn, args=())
 lisn.start()
+console_log('now in main loop')
 while True:
     try:
         while curmen != 'ex_prog':
