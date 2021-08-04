@@ -38,11 +38,14 @@ if not release:
     except:
         with open('ll.bat', 'w+') as data:
             data.write('echo off\npowershell -nologo "& "get-content log.txt -wait -tail 1"\npause')
+        with open('plugins/pll.bat', 'w+') as data:
+            data.write('echo off\npowershell -nologo "& "get-content plugins\log.txt -wait -tail 1"\npause')
 
     # with open('log.txt', 'w+') as log:
     #     log.write('')
 
     os.startfile('ll.bat')
+    os.startfile('plugins\pll.bat')
 
 
 try:

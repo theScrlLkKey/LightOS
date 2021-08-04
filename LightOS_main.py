@@ -760,6 +760,7 @@ fo_setting =  {fo_setting}''')
             elif ussl.upper() == 'EXIT':
                 os._exit(0)
             elif ussl in filenumls:
+                console_log('running plugin')
                 inputchar('\033[2J')
                 type(loadingscr)
                 inputchar('\033[11A')
