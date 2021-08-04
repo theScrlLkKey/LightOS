@@ -730,6 +730,7 @@ fo_setting =  {fo_setting}''')
         i = 2
         for file in files:
             try:
+                console_log('plugin menu '+str(j)+str(i))
                 dummy, plugn = filenumls[str(i)].split('--')
                 if j > 13:
                     inputchar(f'\033[{j-10};45H')
@@ -807,6 +808,7 @@ def strttmup():
             inputchar('\033[2;2H')
             type(current_time)
             inputchar(f'\033[{tuploc}')
+            console_log('clock.update('+current_time+') done')
             time.sleep(30)
 def tmup(tul):
     t = time.localtime()
@@ -814,6 +816,7 @@ def tmup(tul):
     inputchar('\033[2;2H')
     type(current_time)
     inputchar(f'\033[{tul}')
+    console_log('clock.update() done temp')
 
 def stprog(pnm):
     try:
@@ -1024,6 +1027,8 @@ while True:
             type('█                                                                 █')
             if usrsel.lower() == 'antigravity':
                 import antigravity
+            console_log('running program')
             switchscr(str(usrsel))
+            console_log('done running '+usrsel)
     except:
         continue
