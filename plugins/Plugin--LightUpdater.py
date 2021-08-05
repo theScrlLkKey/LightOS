@@ -84,6 +84,7 @@ time.sleep(0.5)
 sys.stdout.write('Making files executable...')
 sys.stdout.flush()
 
+os.remove('LightOS.py')
 shutil.move('LightOS-Files/LightOS.py', os.getcwd())
 print(' Done!')
 
