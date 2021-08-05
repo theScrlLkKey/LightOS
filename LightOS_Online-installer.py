@@ -40,7 +40,7 @@ elif chan.lower() == 'b':
     print('Downloading latest beta release of LightOS...')
     download("https://github.com/theScrlLkKey/LightOS-beta/releases/latest/download/LightOS_installFiles.tar", dest_folder=cwd)
 else:
-    pass
+    exit()
 
 
 packages_to_install = ['os', 'colorama', 'threading', 'random', 'shutil', 'pythonping', 'zipfile','yfinance', 'msvcrt', 'cryptography', 'socket', 'select', 'errno', 'urllib', 'pynput', 'sympy']
