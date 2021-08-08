@@ -969,6 +969,8 @@ if name + '_pw' in usenmls:
         inputchar('\033[9;23H')
         type(f'WRONG PASSWORD FOR {name}!')
         console_log('password for '+name+'was not correct')
+        inputchar('\033[10;23H')
+        input('PRESS ENTER TO EXIT')
         exit()
 else:
     console_log('password for ' + name + 'was correct')
