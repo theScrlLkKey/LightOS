@@ -53,9 +53,11 @@ if not release:
     # with open('log.txt', 'w+') as log:
     #     log.write('')
 
+    # UNCOMMENT THIS (and the block in LightOS_main.py) TO ENABLE CONSOLE LOGGING
+    #_________________________________
     os.startfile('log\ll.bat')
     os.startfile('plugins\log\ll.bat')
-
+    #_________________________________
 
 try:
     subprocess.call(['py', '-3', 'LightOS_main.py'], creationflags=subprocess.CREATE_NEW_CONSOLE)

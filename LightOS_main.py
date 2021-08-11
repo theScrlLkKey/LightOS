@@ -125,6 +125,11 @@ plugin_menu = '''█████████████████████
 ███████████████████████████████████████████████████████████████████
 '''
 
+init_setup = '''███████████████████████████████████████████████████████████████████
+█                         LIGHT OS SETUP                          █  
+███████████████████████████████████████████████████████████████████
+'''
+
 external_prog = '''███████████████████████████████████████████████████████████████████
 █00:00 AM                                                 LIGHT OS█  
 ███████████████████████████████████████████████████████████████████
@@ -143,11 +148,15 @@ enckey = write_key()
 
 
 def console_log(log_text):
+    # UNCOMMENT THIS (and the block in LightOS.py) TO ENABLE CONSOLE LOGGING
+    #____________________________________________
     try:
         with open('log/log.txt', 'a+') as data:
             data.write(log_text + '\n')
     except:
         pass
+    # ____________________________________________
+    pass
 
 
 def on_press(key):
@@ -955,6 +964,7 @@ except:
     with open('data.txt', 'w+') as data:
         data.write('')
     encrypt_emb2('data.txt', '', enckey, 'gtTfs7Adh6G3j835GkdsJFYU86389llke')
+
 
 
 console_log('drawing password screen')
