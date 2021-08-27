@@ -402,7 +402,7 @@ def switchscr(scrnum):
         type(loadingscr)
         inputchar('\033[11A')
         inputchar('\033[10;39H')
-        encrypt_emb2(f'{name}_notes.txt', '', enckey, f'gtadYYDA6adAD87AD6dayHFG9B7gf{str(zlib.crc32(str(usenmls[name + "_pw"]).encode("utf-8")))}')
+        encrypt_emb2(f'{name}_notes.txt', '', enckey, f'gtadYYDA6adAD87AD6dayHFG9B7gf{str(zlib.crc32(str(passwd).encode("utf-8")))}')
         encrypt(f'{name}_notes.txt', enckeyff)
 
         inputchar('\033[2J')
