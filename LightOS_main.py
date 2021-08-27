@@ -403,6 +403,7 @@ def switchscr(scrnum):
         inputchar('\033[11A')
         inputchar('\033[10;39H')
         encrypt_emb2(f'{name}_notes.txt', '', enckey, f'gtadYYDA6adAD87AD6dayHFG9B7gf{str(zlib.crc32(str(usenmls[name + "_pw"]).encode("utf-8")))}')
+        encrypt(f'{name}_notes.txt', enckeyff)
 
         inputchar('\033[2J')
         type(doc_menu)
@@ -419,11 +420,17 @@ def switchscr(scrnum):
         inputchar('\033[11A')
         inputchar('\033[10;39H')
         with open(f'{name}_notes.txt', "r") as file:
-            encfdata = file.read()
+            encfdataf = file.read()
         try:
+            try:
+                encfdata = decrypt(encfdataf.encode("utf-8"), enckeyff)
+            except:
+                pass
+
             with open('notesdec.txt', "wb") as file:
-                file.write(decrypt_emb2(encfdata, f'gtadYYDA6adAD87AD6dayHFG9B7gf{str(zlib.crc32(str(usenmls[name + "_pw"]).encode("utf-8")))}').encode("utf-8"))
-        except:
+                file.write(decrypt_emb2(encfdata.decode("utf-8"), f'gtadYYDA6adAD87AD6dayHFG9B7gf{str(zlib.crc32(str(passwd).encode("utf-8")))}').encode("utf-8"))
+        except Exception as err:
+            console_log(str(err))
             inputchar('\033[2J')
             print('Incorrect password or data.txt corrupt.')
             print('Fatal error occurred. Press enter to continue, then select 1.')
@@ -443,7 +450,8 @@ def switchscr(scrnum):
         inputchar('\033[10;39H')
         with open('notesdec.txt', "r") as file:
             decfdata = file.read()
-        encrypt_emb2(f'{name}_notes.txt', decfdata, enckey, f'gtadYYDA6adAD87AD6dayHFG9B7gf{str(zlib.crc32(str(usenmls[name + "_pw"]).encode("utf-8")))}')
+        encrypt_emb2(f'{name}_notes.txt', decfdata, enckey, f'gtadYYDA6adAD87AD6dayHFG9B7gf{str(zlib.crc32(str(passwd).encode("utf-8")))}')
+        encrypt(f'{name}_notes.txt', enckeyff)
         with open('notesdec.txt', "wb") as file:
             file.write(''.encode("utf-8"))
 
@@ -855,7 +863,47 @@ def progtimup():
         except:
             continue
 
+def encrypt(filename, key):
+    """
+    Given a filename (str) and key (bytes), it encrypts the file and write it
+    """
+    f = Fernet(key)
+    try:
+        with open(filename, "rb") as file:
+            # read all file data
+            file_data = file.read()
+    except FileNotFoundError:
+        print('File does not exist!')
+        exit()
+    except MemoryError:
+        print('Gah. Your file is too big!(999Mb max)')
+        exit()
+    except:
+        print('A error occurred.')
+        exit()
 
+    # encrypt data
+    try:
+        encrypted_data = f.encrypt(file_data)
+        # write the encrypted file
+        with open(filename, "wb") as file:
+            file.write(encrypted_data)
+    except:
+        print('A error occurred.')
+
+
+def decrypt(encrypted_data, key):
+    """
+    Given a filename (str) and key (bytes), it decrypts the file and write it
+    """
+    f = Fernet(key)
+    # decrypt data
+    try:
+        decrypted_data = f.decrypt(encrypted_data)
+        # write the original file
+        return decrypted_data
+    except:
+        return encrypted_data
 
 def encrypt_emb2(filename, data, key, password):
     """
@@ -954,7 +1002,10 @@ def decrypt_emb2(data, password):
 # print('\nDone! \n')
 
 time.sleep(0.8)
+
+
 usenmls = {}
+# passwords
 try:
     with open('data.txt', 'r') as data:
         decdat = decrypt_emb2(data.read(), 'gtTfs7Adh6G3j835GkdsJFYU86389llke')
@@ -967,6 +1018,7 @@ except:
 
 
 
+
 console_log('drawing password screen')
 type(usenmpw_menu)
 inputchar('\033[11A')
@@ -974,8 +1026,8 @@ inputchar('\033[5;23H')
 name = input('USERNAME: ').upper()
 inputchar('\033[7;23H')
 passwd = input('PASSWORD: ')
-if name + '_pw' in usenmls:
-    if usenmls[name + '_pw'] != passwd:
+if name + '_pwh' in usenmls:
+    if usenmls[name + '_pwh'] != str(zlib.crc32(passwd.encode("utf-8"))):
         inputchar('\033[9;23H')
         type(f'WRONG PASSWORD FOR {name}!')
         console_log('password for '+name+'was not correct')
@@ -983,12 +1035,12 @@ if name + '_pw' in usenmls:
         input('PRESS ENTER TO EXIT')
         exit()
 else:
-    console_log('password for ' + name + 'was correct')
+    console_log('making account for ' + name)
     inputchar('\033[2J')
     type(loadingscr)
     inputchar('\033[11A')
     inputchar('\033[10;39H')
-    encrypt_emb2('data.txt', decdat + f'usenmls["{name}_pw"] = "{passwd}" \n', enckey, 'gtTfs7Adh6G3j835GkdsJFYU86389llke')
+    encrypt_emb2('data.txt', decdat + f'usenmls["{name}_pwh"] = "{zlib.crc32(passwd.encode("utf-8"))}" \n', enckey, 'gtTfs7Adh6G3j835GkdsJFYU86389llke')
     with open('data.txt', 'r') as data:
         decdat = decrypt_emb2(data.read(), 'gtTfs7Adh6G3j835GkdsJFYU86389llke')
         exec(decdat)
@@ -996,8 +1048,23 @@ else:
     # with open('data.txt', 'a') as data:
     #     data.write(f'usenmls["{name}_pw"] = "{passwd}" \n')
 
-console_log('name inputted is '+name)
 
+# store key
+try:
+    with open(f'{str(zlib.crc32(name.encode("utf-8")))}.kdt', 'r') as data:
+        enckeyff = decrypt_emb2(data.read(), 'hjsgadfjhsfaAHGFYJ7986278KJHhfsK')
+        console_log(f'hash of private key is: {str(zlib.crc32(enckeyff.encode("utf-8")))}')
+
+except FileNotFoundError:
+    with open(f'{str(zlib.crc32(name.encode("utf-8")))}.kdt', 'w+') as data:
+        data.write('')
+    enckeyff = write_key().decode("utf-8")
+    encrypt_emb2(f'{str(zlib.crc32(name.encode("utf-8")))}.kdt', enckeyff, enckey, 'hjsgadfjhsfaAHGFYJ7986278KJHhfsK')
+    console_log(f'hash of private key is: {str(zlib.crc32(enckeyff.encode("utf-8")))}')
+
+
+console_log('password for ' + name + 'was correct')
+# load settings
 try:
     with open(f'{name}_settings.txt', 'r') as sett:
         exec(sett.read())
