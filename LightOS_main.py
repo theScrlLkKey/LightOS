@@ -10,6 +10,12 @@ from pynput.keyboard import Listener, Key
 import colorama
 import threading
 from cryptography.fernet import Fernet
+import secrets
+import hashlib
+from base64 import urlsafe_b64encode as b64e, urlsafe_b64decode as b64d
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 
 
 #menus
@@ -863,6 +869,42 @@ def progtimup():
         except:
             continue
 
+
+
+
+backend = default_backend()
+iterations = 100_000
+
+def _derive_key(password: bytes, salt: bytes, iterations: int = iterations) -> bytes:
+    """Derive a secret key from a given password and salt"""
+    kdf = PBKDF2HMAC(
+        algorithm=hashes.SHA256(), length=32, salt=salt,
+        iterations=iterations, backend=backend)
+    return b64e(kdf.derive(password))
+
+def password_encrypt(message: bytes, password: str, iterations: int = iterations) -> bytes:
+    salt = secrets.token_bytes(16)
+    key = _derive_key(password.encode(), salt, iterations)
+    return b64e(
+        b'%b%b%b' % (
+            salt,
+            iterations.to_bytes(4, 'big'),
+            b64d(Fernet(key).encrypt(message)),
+        )
+    )
+
+def password_decrypt(token: bytes, password: str) -> bytes:
+    decoded = b64d(token)
+    salt, iter, token = decoded[:16], decoded[16:20], b64e(decoded[20:])
+    iterations = int.from_bytes(iter, 'big')
+    key = _derive_key(password.encode(), salt, iterations)
+    return Fernet(key).decrypt(token)
+
+
+
+
+
+
 def encrypt(filename, key):
     """
     Given a filename (str) and key (bytes), it encrypts the file and write it
@@ -1052,14 +1094,21 @@ else:
 # store key
 try:
     with open(f'{str(zlib.crc32(name.encode("utf-8")))}.kdt', 'r') as data:
-        enckeyff = decrypt_emb2(data.read(), 'hjsgadfjhsfaAHGFYJ7986278KJHhfsK')
+        enckeyffte = decrypt_emb2(data.read(), 'hjsgadfjhsfaAHGFYJ7986278KJHhfsK')
+        try:
+            enckeyff = password_decrypt(enckeyffte.encode("utf-8"), hashlib.sha256(passwd.encode("utf-8")).hexdigest()).decode("utf-8")
+        except:
+            enckeyff = enckeyffte
+            enckeyfftf = password_encrypt(enckeyff.encode("utf-8"), hashlib.sha256(passwd.encode("utf-8")).hexdigest()).decode("utf-8")
+            encrypt_emb2(f'{str(zlib.crc32(name.encode("utf-8")))}.kdt', enckeyfftf, enckey, 'hjsgadfjhsfaAHGFYJ7986278KJHhfsK')
         console_log(f'hash of private key is: {str(zlib.crc32(enckeyff.encode("utf-8")))}')
 
 except FileNotFoundError:
+    enckeyff = write_key().decode("utf-8")
     with open(f'{str(zlib.crc32(name.encode("utf-8")))}.kdt', 'w+') as data:
         data.write('')
-    enckeyff = write_key().decode("utf-8")
-    encrypt_emb2(f'{str(zlib.crc32(name.encode("utf-8")))}.kdt', enckeyff, enckey, 'hjsgadfjhsfaAHGFYJ7986278KJHhfsK')
+    enckeyfftf = password_encrypt(enckeyff.encode("utf-8"), hashlib.sha256(passwd.encode("utf-8")).hexdigest()).decode("utf-8")
+    encrypt_emb2(f'{str(zlib.crc32(name.encode("utf-8")))}.kdt', enckeyfftf, enckey, 'hjsgadfjhsfaAHGFYJ7986278KJHhfsK')
     console_log(f'hash of private key is: {str(zlib.crc32(enckeyff.encode("utf-8")))}')
 
 
