@@ -917,7 +917,7 @@ eName='?'
 needKey = 2 
 path = r'maps.txt'
 dpath = r'gamedata.gcfg'
-
+print('This game is made with LightRPG-creator v4 (modded)')
 print('Reading game data...')
 time.sleep(random.randint(1,3))
 #with open(dpath,'w+') as data:

@@ -62,7 +62,7 @@ games_menu = '''█████████████████████�
 █GAMES:                                                           █
 █1. MAIN MENU                                                     █
 █2. LIGHTDRAW                                                     █
-█                                                                 █
+█3. GRIFFIN'S QUEST                                               █
 █                                                                 █
 ███████████████████████████████████████████████████████████████████ 
 █                                                                 █
@@ -391,6 +391,25 @@ def switchscr(scrnum):
         tmup('10;19H')
         inputchar('\033[4;1H')
         stprog("lightbreakout.py")
+        time.sleep(0.5)
+    elif scrnum == '3' and curmen == 'games':
+        inputchar('\033[2J')
+        type(external_prog)
+        inputchar('\033[11A')
+        inputchar('\033[3C')
+        inputchar('\033[2B')
+        inputchar('\033[2;26H')
+        type('GRIFFIN\'S QUEST')
+        tuploc = '*'
+        inputchar('\033[4;2H')
+        curmen = 'ex_prog'
+        inputchar('\033[4;2H')
+        prognm = 'CHATPY  '
+        # progtmu = threading.Thread(target=progtimup, args=())
+        # progtmu.start()
+        tmup('10;19H')
+        inputchar('\033[4;1H')
+        stprog("griffin_quest.py")
         time.sleep(0.5)
     elif scrnum == '4' and curmen == 'main':
         inputchar('\033[2J')
