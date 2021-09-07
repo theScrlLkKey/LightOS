@@ -1,0 +1,1005 @@
+
+
+#Maps
+
+story = """ 
+
+---   GRIFFIN QUEST   ---
+
+
+You are startled awake by the clanging bell of the town crier.  
+\"Hear Ye! Hear Ye! The Evil Sorcerer has captured the Golden Griffin.
+Our village is defenseless without it. Beware of thieves and ruffians roaming our streets.\"
+
+There is a loud knock on your door.  In strides a cloaked stranger.  He points his finger at you.
+\"The village needs your help to rescue the Golden Griffin.
+ You must go to the Inn on East Broadway and find the Innkeeper.  He has valuable information for you.\"
+
+In his hands are a bow, a full quiver of arrows, and a gleaming sword. 
+\"You will need these on your Quest for you will encounter many enemies. 
+The time is now.  Go!\"
+
+The stranger goes outside leaving your front door wide open.   
+Will you accept this challenge? Do you walk through the door and leave your house?
+
+
+Press Enter to continue.
+"""
+
+endstory = '''
+The Amulet of Freedom bursts with a bright light that ripples across the tower\'s landing!  The Golden Griffin bucks free from the Sorcerer\'s spell and stretches its wings.  It scoops you onto its back and launches into the sky.  Soaring upwards, it turns towards the village far in the distance to purge all the enemies...
+
+Congratulations!  You have completed the quest, won the Griffin\'s freedom, and restored peace to the land!
+
+
+Press Enter to exit.
+'''
+
+#Maps
+
+e1m1map = r'''
+                          
+                     __________    
+              _     /     ____/
+          ___/     /    ____/ 
+         /__~ \   /   ____/   
+        _'  \  | /  ___/      _   _   _
+       |V|_ /  //  _/_____  _|V|_|V|_|V|     
+      /     |             \           /|
+     /      _\_  \ ___ / \\\    /    / |
+    /     //   \ /     \ / \\__/    /  |
+   /          _||     _//          /   |
+  /_   _   _   _   _   _   _   _  /
+ /|V|_|V|_|V|_|V|_|V|_|V|_|V|_|V|/                        
+ |                              |
+   
+
+'''
+dun1map='''
+                    OOO
+                  OO
+              _  O 
+            _/ \[]
+          _/ _    \_        ((()))
+         / _/_\____ \     ((((()))))
+          |  _   _ |       (((())))
+          | | | |_||          ||   
+          |_|_|____|          ||       #
+           ...                        \|/
+          ...
+         ...                 
+          ...                 
+ 
+'''
+
+
+dun2map = '''
+              
+       _________________                                  
+      /  _     _     _  \                    
+     /  |_|   |_|   |_|  \          
+    / ___________________ \                  
+     |        INN        |
+     |    _   ___   _    |                                               
+     |   |_| | | | |_|   |              
+     |_______|_|_|_______|....                                        
+             ===              .......            
+            ===                      .......
+           ===                               
+          ===   
+'''                                      
+
+
+dun3map =  r'''
+
+                _
+           __  //|                                  
+          / /|// |                                
+         / / |/  |
+        / /     /
+       / / /|  /
+      | | / | / 
+      |_| |_|/  =========================                                
+      //  |   =========================
+     //   |  =========================                                       
+    //___/_____         ...                           
+   ||          |\\        ...                               
+   ||          | \\         ..                        
+   ||__________|  \\_____  ..
+               \  ||     |   ...
+                \ ||     |      ...
+                 \||_____|
+
+
+'''
+
+dun4map = r'''
+
+
+            _
+           / \      ()
+          /___\    (())
+          |___|     ||
+         ..
+        ..
+   =========================                                
+   =========================
+   =========================  
+       ==         ___        ____
+        ==    ___|___|___   /|%%%
+          ==   |       |__ //
+           ==  |_______|%%|/
+                               
+
+
+'''
+
+dun5map = r'''
+              ________
+             /________\   
+             |        |  
+             |________|   
+               ==
+              ==
+   ===========================                                
+   ===========================
+   =========================== 
+       ___(())_____(())______
+      /|%((()))%%%((()))%%%%/|
+   __//    ||       ||     //
+ |%%|/                    |/
+                            
+
+
+
+
+'''
+
+dun6map = r'''
+
+
+      .......
+             ...
+                .. 
+                  ./| |-|-|-|-|-|-|-|-|-|-|-|-|
+   ===========    / ||      ____      ____   |     
+   =========      |    ____  |  \_   /| | J |
+   =======        |   G | |\ |    \__      |
+                 |           |_____|      |
+              . |-|-|-|-|-|-|-|-|-|-|-|-|-
+            ..
+         ....
+    ......
+
+
+'''
+
+
+dun7map = r'''
+
+              
+                                        
+                ________       
+               | potion |              
+         ______|__shop__|_______       ________         
+          |                   |       /|%%%%%%%
+   ==     |    _   ___   _    |______/ |%%%%%%%                             
+    ==    |   |_| | | | |_|   |%%%%%%| /             
+     ==   |_______|_|_|_______|%%%%%%|/                  
+      ===                                     
+        ======                             
+                                             
+              
+
+
+
+'''
+dun8map = r'''
+
+_____        _____(())_______(())__________               ..
+   |        /|%% ((())) %%% ((())) %%%%%%%/|            ..
+_  |______ / |%%% (()) %%%%% (())  (#) %%/ |          ..
+_| |%%%%%%| /***** || (#) (#) || * \|/  /  /        ..
+___|%%%%%%|/********* \|/ \|/ *********/| /      ...
+       /|   **************************/||/ ...... 
+______/_|____________________________/_|__________
+                   _                              |
+                  ]X[                             |
+__________________]X[_____________________________|
+
+
+
+'''
+dun9map = r'''
+
+
+   \
+    \|\\ 
+   \ | \\               /\ 
+    \| ||_      /\      /\
+     \ || |\____/\_____//\\_________________/\_____
+  /\  \||_||   //\\    //\\     /\      _   /\     |
+  /\      \|___//\\___//||\\____/\_____|X|_//\\____|
+ //\\         //||\\    ||     //\\    ..  //\\
+ //\\    /\     ||    /\       //\\  ..   //||\\
+//||\\   /\           /\      //||\\  ..    ||
+  ||    //\\         //\\       || ../\
+        //\\   /\    //\\         .. /\
+       //||\\  /\   //||\\      ..  //\\
+ ..      ||   //\\    ||            //\\
+   ...        //\\                 //||\\
+     ...     //||\\                  ||
+   ...         ||       ..      
+      ..                  ..
+                            ...     
+                               ...
+
+'''
+dun10map = r'''
+
+                   /\
+         /\        /\        /\                      
+    /\   /\       //\\       /\   /\
+    /\  //\\       ||       //\\  /\
+   //\\  ||  /\         /\   ||  //\\
+   //\\      /\         /\       //\\
+  //||\\    //\\       //\\     //||\\
+    ||      //\\       //\\       || 
+      /\   //||\\     //||\\    /\
+      /\     ||         ||      /\
+     //\\          /\          //\\
+     //\\          /\          //\\
+    //||\\        //\\        //||\\
+      ||          //\\          ||
+                 //||\\
+                   ||
+
+              
+'''
+dun11map = r'''
+
+                   /\
+         /\        /\        /\                      
+    /\   /\       //\\       /\   /\
+    /\  //\\       ||       //\\  /\
+   //\\  ||  /\         /\   ||  //\\
+   //\\      /\         /\       //\\
+  //||\\    //\\       //\\     //||\\
+    ||      //\\       //\\       || 
+      /\   //||\\     //||\\    /\
+      /\     ||         ||      /\
+     //\\          /\          //\\
+     //\\          /\          //\\
+    //||\\        //\\        //||\\
+      ||          //\\          ||   
+                 //||\\
+                   ||
+
+
+'''
+dun12map = r'''
+
+     /\          
+     /\          ..             /\
+    //\\     /\    ..   /\      /\
+     ||      /\     ..  /\     //\\
+..          //\\  ..   //\\     ||
+  ..        //\\   ..  //\\       ....  
+ ...  /\   //||\\ ..  //||\\   ... 
+    ../\.    ||    ..   ||  ...   ___   
+     //\\...   /\        ...     |V V|
+     //\\      /\                |   |
+    //||\\    //\\               |   |
+      ||      //\\               |   |
+             //||\\ ..  _ _ _ _ _|_ _|_ _                                
+               ||  ..  | V V V V V V V V |
+                  ..   |                 |  
+                 ..    |   __            |
+                   ... |__|XX|___________| 
+                      .....
+
+
+'''
+dun13map = r'''
+                                   ________
+                                  |\       \                       
+                                  | \_ _ _ _\
+                                  | | V V V |
+           _ _ _ _ _ _ _ _ _ _ _ _| |       |
+          /|V V V V V V V V V V V | |       |
+         / |                      | |       |
+        /  |    ___    ___________| |       |
+       /   |   |X|X|  |\          | |       |\
+      /    |___|X|X|__| \         | |       | \
+     /    /           |  \        | |       |  \
+    |    /             \|\\       \ |       |  |
+    |   /               \| \_______\|       |  |
+    |  /                 \  |               |  |  
+    | /                   \ |               |\ |
+    |/                     \|_______________| \|
+
+
+
+
+'''
+dun14map = r'''
+
+        _________________
+     __/\               /\__   
+   _/    \     }-{     /    \_
+  | \     \           /     / |
+  |  \     \   }-{   /     /  |
+  |   \     \_______/     /   |
+  |    \   _/       \_   /    |
+  |     \_/           \_/     |     
+  |     |               |     |
+  |     |       _       |     |
+  |     |      | |      |     |
+  |  /| |______|_|______| |\  |            
+  |  ||/                 \||  |
+  |  |/                   \|  |        
+  |  /                     \  |
+            
+
+'''
+
+dun15map = r'''
+
+
+              
+         \                        /|     [==]
+          \______________________/ |   [==]
+           |[][]==|[][][]|[]==[]|  | [==]
+           |[][][]|[]==[]|[][]==|  |   [==]
+           |[]==[]|[][]==|[][][]|  |     [==]
+        /| |______|______|______|  |       [==]    
+        ||/         ____        \  |     [==]
+        |/         /    \        \ |   [==]
+        /         /______\        \|_[==]
+       /          |      |                 
+
+
+'''
+
+
+
+
+
+
+
+
+#Stories
+
+
+e1m1story='You made it to the landing at the top of the Sorcerer\'s Tower! Across the landing you see the Golden Griffin. It sees you, but it is frozen still by the Sorcerer\'s magic!"  '
+dun1story='''You are standing outside of your house. Broadway, the main stone street of the Village lies to the South.
+
+
+To move, type north, south, east, or west
+In an enemy attack, type bow, sword, or run
+To view your items, type inventory
+To use an item, type use and the name of the item
+To save your game, type save
+To view these commands at a later date, type commands.
+
+'''
+dun2story='You are at the Inn. To the South is Broadway and to the East is a dirt path that leads to the Stables.  The Innkeeper is standing at a desk to the north.   '
+dun3story='You find yourself at the Village Wall. To the West is the Main Gate that leads to the Mystic Forest. Broadway is to the East and to the South is a path that leads to Ye Ole Potion Shoppe.   '
+dun4story='This is West Broadway. Your house lies to the North. To the West is the Village Wall and Ye Ole Potion Shoppe is South.  Broadway continues to the East.   '
+dun5story='This is East Broadway. The Inn is to the North, the Stables are to the East, and South is the Alchemist\'s Garden wall. Broadway continues to the West.   '
+dun6story='You are at the Stables where hay bales are stacked around the walls and horses whinny as you pass through.  A cobbled path leads North to the Inn and a grassy path leads South to the Alchemist\'s Garden. Broadway is to the West.   '
+dun7story='You have come to Ye Ole Potion Shoppe. To the North is Broadway, to the East is a door that leads to the Alchemist\'s Garden, and to the West is a dirt path that leads to the Village Wall and Main Gate.   The Shopkeeper is behind a counter to the south.   '
+dun8story='This must be the Alchemist\'s Garden. You are surrounded by herbs and plants growing in every nook and cranny.   The Garden Wall is to the North.  To the East is a path that leads to the Stables and on the South side of the garden is an overgrown hidden gate leading through the Village Wall.  To the West is Ye Ole Potion Shoppe.   '
+dun9story='You are now in The Mystic Forest with the Village Wall and Main Gate to the North. To the East is an overgrown path leading to a hidden gate in the Village Wall.   Winding paths, South and West, lead deeper into the Mystic Forest.   '
+dun10story='Lost in The Mystic Forest!   '
+dun11story='Lost in The Mystic Forest!   '
+dun12story='You are at the Sorcerer\'s Keep in the Mystic Forest.  The Gate into the Sorcerer\'s Keep looms to the South.  To the North, East, and West are winding paths that lead deep into the Mystic Forest.   '
+dun13story='You are in the Courtyard of the Sorcerer\'s Keep.  The Keep\'s Main Gate lies to the North and to the East is a heavy iron doorway that leads to the Sorcerer\'s Tower.   '
+dun14story='You are in the Great Hall of the Sorcerer\'s Tower.  Gleaming crystals sparkle from tall stone walls.  There are chiseled stone doors in every direction.   '
+dun15story='Endless shelves of books surround you as you walk into the Wizard\'s Library.  On the East wall a narrow stairway winds its way up the Tower.  To the West is the door to the Great Hall.   '
+
+eName='Thief' #Change the enemy name. You can change it in the move handler too.
+#Enemy picture thing. You can change it in the move handler too.
+ePic=''' 
+!!!!!!
+'''
+
+
+#Move database, A is level(eg, a = 2 is dun1)B is the players move(eg,b == l is left) item1-4 are items (eg item2 = 5), do what you want.
+item1 = 0
+def moveHandlr(b,a):
+    #print(str(b)+str(a))
+    global needKey
+    global eName
+    global ePic
+
+    if a == 1:
+        if b == 'l':
+            lvl = 16
+        elif b == 'r':
+            lvl = a
+        elif b == 'f':
+            lvl = a
+        elif b == 'b':
+            lvl = a
+        else:
+            lvl = a
+    
+    elif a == 2:
+        if b == 'l':
+            lvl = 3
+        elif b == 'r':
+            lvl = a
+        elif b == 'f':
+            lvl = a
+        elif b == 'b':
+            eName='RUFFIAN'
+            ePic=''' 
+!!!!!!
+'''
+            lvl = 5
+        else:
+            lvl = a
+
+    elif a == 3:
+        if b == 'l':
+            lvl = a
+        elif b == 'r':
+            eName='THIEF'
+            ePic=''' 
+!!!!!!
+'''
+            lvl = 7
+        elif b == 'f':
+            global item2
+
+            if item2 < 1:
+                print('''
+
+The Innkeeper says,
+
+\"Hello Hero!  I see you have accepted the quest to find the Golden Griffin. You must leave the village and travel through the Mystic Forest to the Sorcerer\'s Tower. There you will find the Griffin.
+
+Take this amulet. With it the Griffin will know you\'re a friend. I hope it brings you luck.  You\'ll need it.  There are many dangers awaiting you in the Mystic Forest and even more in the Sorcerer\'s Tower!\"
+
+''')
+                item2 = item2 + 1
+                input('Press enter to continue')
+            else:
+                print('''
+
+The Innkeeper exclaims,
+
+\"What?  You\'re still here???  You best be off and rescue that Griffin!\"
+
+''')
+                input('Press enter to continue')
+            lvl = a
+           
+        elif b == 'b':
+            eName='RUFFIAN'
+            ePic=''' 
+!!!!!!
+'''
+            lvl = 6
+        else:
+            lvl = a
+
+    elif a == 4:
+        
+        if b == 'l':
+            if needKey == 1 or needKey == 2:
+                print ('''
+
+
+The Main Gate is locked!  All the keys have been stolen!  If you defeat an enemy, they might drop one. ''')
+                lvl = a
+                needKey=1
+            else:
+                print('''
+
+
+You have a key! You can go through the Main Gate.''')
+                lvl = 10
+                needKey = 2
+
+                eName='FOREST GRUMPKIN'
+                ePic=''' 
+!!!!!
+'''
+
+        elif b == 'r':
+            lvl = 5  
+            eName='RUFFIAN'
+            ePic=''' 
+!!!!!
+'''
+        elif b == 'f':
+            lvl = a
+
+        elif b == 'b':
+            eName='THIEF'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 8
+        else:
+            lvl = a
+
+
+    elif a == 5:
+
+        if b == 'l':
+            eName='RUFFIAN'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 4
+
+        elif b == 'r':
+            eName='RUFFIAN'
+            ePic=''' 
+!!!!!!
+'''
+            lvl = 6
+
+        elif b == 'f':
+            eName='THIEF'
+            ePic=''' 
+!!!!!!
+'''
+            lvl = 2
+
+        elif b == 'b':
+            eName='THIEF'
+            ePic=''' 
+!!!!!!
+'''
+            lvl = 8
+        else:
+            lvl = a
+
+    elif a == 6:
+        if b == 'l':
+            eName='RUFFIAN'
+            ePic=''' 
+!!!!!!
+'''
+            lvl = 5
+        elif b == 'r':
+            eName='THIEF'
+            ePic=''' 
+!!!!!!
+'''
+            lvl = 7
+        elif b == 'f':
+            eName='THIEF'
+            ePic=''' 
+!!!!!!
+'''
+            lvl = 3
+        elif b == 'b':
+            lvl = a
+        else:
+            lvl = a
+
+    elif a == 7:
+        if b == 'l':
+            eName='RUFFIAN'
+            ePic=''' 
+!!!!!!
+'''
+            lvl = 6
+        elif b == 'r':
+            lvl = a
+        elif b == 'f':
+            eName='THIEF'
+            ePic=''' 
+!!!!!!
+'''
+            lvl = 3
+        elif b == 'b':
+            eName='KILLER SNARK WITH VERY SHARP TEETH'
+            ePic=''' 
+!!!!!!
+'''
+            lvl = 9
+        else:
+            lvl = a
+
+    elif a == 8:
+        if b == 'l':
+            eName='RUFFIAN'
+            ePic=''' 
+!!!!!!
+'''
+            lvl = 4
+        elif b == 'r':
+            eName='KILLER SNARK WITH VERY SHARP TEETH'
+            ePic=''' 
+!!!!!!
+'''
+            lvl = 9
+        elif b == 'f':
+            eName='RUFFIAN'
+            ePic=''' 
+!!!!!!
+'''
+            lvl = 5
+        elif b == 'b':
+            global item1
+            print('''
+
+The Shopkeeper says,
+
+\"Hello Friend!  In these dangerous times, a healing potion is always good to have in your bag of tricks.   ''')
+            if item1 < 1:
+                print('''
+
+Take this potion, but use it sparingly... because you know what they say, \"Haha! Potion go vroom!\"''')
+                item1 = item1 + 1
+                input('Press enter to continue')
+
+            elif item1 == 1:
+                print('''
+
+Always good to have a little extra on hand...  here is another on the house.\"''')
+                item1 = item1 + 1
+                input('Press enter to continue')
+
+            else:
+                print('''
+
+But alas, I see that you already have a few.  Do come back if you run out.\"''')
+                input('Press enter to continue')
+            lvl = a
+        else:
+            lvl = a
+
+    elif a == 9:
+        if b == 'l':
+            eName='THIEF'
+            ePic=''' 
+!!!!!!
+'''
+            lvl = 8
+        elif b == 'r':
+            eName='THIEF'
+            ePic=''' 
+!!!!!!
+'''
+            lvl = 7
+        elif b == 'f':
+            lvl = a
+        elif b == 'b':
+            if needKey == 1 or needKey == 2:
+                print ('''
+
+
+You pull back the brush but you need a key to go through the hidden gate.  All the keys have been stolen!  If you defeat an enemy, they might drop one. ''')
+                lvl = a
+                needKey=1
+            else:
+                print('''
+
+
+You have a key! You can go through the hidden gate.''')
+                lvl = 10
+                needKey = 2
+
+                eName='FOREST GRUMPKIN'
+                ePic=''' 
+!!!!!
+'''
+        else:
+            lvl = a
+
+    elif a == 10:
+        if b == 'l':                
+            eName='WILD GRUMPKIN'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 11
+        elif b == 'r':
+            if needKey == 1 or needKey == 2:
+                print ('''
+
+
+You follow the path but find you need a key to go through the hidden gate.  All the keys have been stolen!  If you defeat an enemy, they might drop one.''')
+                lvl = a
+                needKey=1
+            else:
+                print('''
+
+
+You have a key! You can go through the hidden gate.''')
+                lvl = 9
+                needKey = 2                
+                eName='KILLER SNARK WITH VERY SHARP TEETH'
+                ePic=''' 
+!!!!!
+'''
+
+        elif b == 'f':
+            if needKey == 1 or needKey == 2:
+                print ('''
+
+
+You need a key to go through the Main Gate.  All the keys have been stolen!  If you defeat an enemy, they might drop one.  ''')
+                lvl = a
+                needKey=1
+            else:
+                print('''
+
+
+You have a key! You can go through the Main Gate.''')
+                lvl = 4
+                needKey = 2                
+                eName='OUTLAW'
+                ePic=''' 
+!!!!!
+'''
+        elif b == 'b':                
+            eName='WILD GRUMPKIN'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 11
+        else:
+            lvl = a
+
+    elif a == 11:
+        if b == 'l':                
+            eName='RAGING GRUMPKIN'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 10
+        elif b == 'r':                
+            eName='GRUMPY GRUMPKIN'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 12
+        elif b == 'f':                
+            eName='OUTLAW'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 12
+        elif b == 'b':                
+            eName='WILD GRUMPKIN'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 12
+        else:
+            lvl = a
+
+    elif a == 12:
+        if b == 'l':                
+            eName='STINKY GRUMPKIN'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 11
+        elif b == 'r':                
+            eName='RAGING GRUMPKIN'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 13
+        elif b == 'f':                
+            eName='GOREST FRUMPKIN'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 11
+        elif b == 'b':                
+            eName='WILD GRUMPKIN'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 11
+        else:
+            lvl = a
+
+    elif a == 13:
+        if b == 'l':                
+            eName='FOREST GRUMP'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 12
+        elif b == 'r':                
+            eName='RAGING GRUMPKIN'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 11
+        elif b == 'f':                
+            eName='FOREST GRUMPKIN'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 12
+        elif b == 'b':
+            if needKey == 1 or needKey == 2:
+                print ('''
+
+
+The Gate is locked!  You need a key to get in to the Wizard\'s Keep.''')
+                lvl = a
+                needKey=1
+            else:
+                print('''
+
+
+You have a key! You can open the Gate to the Wizard\'s Keep.''')
+                lvl = 14
+                needKey = 2
+            eName='GARGOYLE'
+            ePic=''' 
+!!!!!
+'''
+        else:
+            lvl = a
+
+    elif a == 14:
+        if b == 'l':
+            lvl = a
+        elif b == 'r':
+            eName='FIRE FIEND'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 15
+        elif b == 'f':
+            eName='FOREST GRUMPKIN'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 13
+        elif b == 'b':
+            lvl = a
+        else:
+            lvl = a
+
+    elif a == 15:
+        if b == 'l':
+            eName='GARGOYLE'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 14
+        elif b == 'r':
+            eName='BRISTLING BRAINGEL'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 16
+        elif b == 'f':
+            eName='GARGOYLE'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 14
+        elif b == 'b':
+            eName='GARGOYLE'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 14
+        else:
+            lvl = a
+
+    elif a == 16:
+        if b == 'l':
+            eName='FIRE FIEND'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 15
+        elif b == 'r':
+            eName='BRISTLING BRAINGEL'
+            ePic=''' 
+!!!!!
+'''
+            lvl = 1
+        elif b == 'f':
+            lvl = a
+        elif b == 'b':
+            lvl = a
+        else:
+            lvl = a
+            
+            
+    else:
+        lvl = a
+
+    
+
+
+    return lvl
+
+
+#Item sutffs
+
+item1Name = 'Health potion'
+item2Name = 'Amulet of Freedom'
+item3Name = ''
+item4Name = ''
+item1 = 0
+item2 = 0
+item3 = 0
+item4 = 0
+ 
+def useItem():
+    global item1
+    global item2
+    global item3
+    global item4
+    #This is for variable to modify, check docs.
+    global pHealth
+    global lvl
+    global gend
+    global x
+    global x
+    global x
+    Use = input('What item do you want to use?')
+    itmToUse = Use.lower()
+    if item1Name.lower() in itmToUse and item1 > 0 and pHealth < 40:
+        pHealth += 9
+        item1 -= 1
+        print('slurp slurp')
+    elif item2Name.lower() in itmToUse and item2 == 1 and lvl == 1:
+        item2 -= 1
+        gend = 1
+    elif item2Name.lower() in itmToUse and item2 == 1 and lvl != 1:
+        print(' <insert not end level text here> ')
+    elif item2Name.lower() in itmToUse and item2 == 0 and lvl != 1:
+        print(' <insert not end level text here> ')
+    elif item2Name.lower() in itmToUse and item2 > 1:
+        print('The Griffen flys down to you, and eats you. The Griffen was never trapped, and your life was a lie. Nobody likes a filthy cheater.')
+        j = 75
+        while j != 0:
+            ans = input('Are you sorry for hacking the game? ')
+            if ans == 'Yes':
+                print('I do not think you are truly sorry, but you may continue apologiesing.')
+                j = j-1
+            elif ans == 'yes':
+                print("I'M A BIT DEAF, SPEAK UP!")
+                continue
+            elif ans == 'YES':
+                print("Egad, you needn't be so loud.")
+            elif ans.lower() == 'no':
+                print('I was going to give you a chance to apologize, but now I shall not. Corrupting save...')
+                with open(dpath,'w+') as data:
+                    data.write(''.join(random.choices(string.ascii_letters + string.digits, k=56)))
+            else:
+                print("I can't hear you, you cheat.")
+        print('Okay, fine. I guess you are sorry. Never do that again, and I will revive you. *poof*')
+        item2 = 1
+        
+
+
+# ''.join(random.choices(string.ascii_letters + string.digits, k=56))
+
+         
+           
+    elif item3Name.lower() in itmToUse and item3 > 0:
+        item3 -= 1
+    elif item4Name.lower() in itmToUse and item4 > 0:
+        item4 -= 1
+    else:
+        print('You don\'t have any ' + str(itmToUse)+' or your stats are maxed')
+
+
+def EoG ():
+    global lvl
+    global gend
+
+ 
+
+
