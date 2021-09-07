@@ -792,7 +792,7 @@ def getStory(m):
 
 def enmyEnc(n):
     k = random.randint(0,1)
-    x = random.randint(1,7)
+    x = random.randint(1,5)
     global pHealth
     global needKey
     global eStr
