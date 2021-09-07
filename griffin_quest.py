@@ -815,7 +815,7 @@ def enmyEnc(n):
                 time.sleep(random.uniform(0.3,1.6))
                 print('Enemy('+n+') attacks!')
                 win=win-3
-                atcc = random.randint(2,4)+ eStr-1.5
+                atcc = random.randint(2,4)+ eStr-1.2
                 pHealth=pHealth-round(atcc, 0) #timer=timer-1
                 print('Health: '+str(pHealth))
                 #print(win)
@@ -843,7 +843,7 @@ def enmyEnc(n):
                     time.sleep(random.uniform(0.3,1.6))
                     print('Enemy('+n+') attacks!')
                     win=win-2.4
-                    atcc = random.randint(1,3)+ eStr-1.5
+                    atcc = random.randint(1,3)+ eStr-1.2
                     pHealth=pHealth-round(atcc, 0)#timer=timer-1
                     print('Health: '+str(pHealth))
                     
@@ -910,7 +910,7 @@ b = ''
 
 plyrShortAct = 'Null'
 xp = 0
-eStr = 0
+eStr = 0.344
 xpx = 0
 pHealth = 25
 eName='?'
