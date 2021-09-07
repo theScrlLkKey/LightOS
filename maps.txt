@@ -636,7 +636,7 @@ The Shopkeeper says,
             if item1 < 1:
                 print('''
 
-Take this potion, but use it sparingly... because you know what they say, \"Haha! Potion go vroom!\"''')
+Take this potion, but use it sparingly...''')
                 item1 = item1 + 1
                 input('Press enter to continue')
 
