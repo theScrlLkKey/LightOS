@@ -6,7 +6,7 @@ import importlib
 import subprocess
 
 
-packages_to_install = ['os', 'colorama', 'threading', 'random', 'shutil', 'pythonping', 'zipfile','yfinance', 'msvcrt', 'cryptography', 'socket', 'select', 'errno', 'urllib', 'pynput', 'sympy']
+packages_to_install = ['requests', 'os', 'colorama', 'threading', 'random', 'shutil', 'pythonping', 'zipfile','yfinance', 'msvcrt', 'cryptography', 'socket', 'select', 'errno', 'urllib', 'pynput', 'sympy']
 
 
 

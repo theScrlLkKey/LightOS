@@ -1,11 +1,22 @@
 import sys
 import os
-import requests
 import time
 import shutil
 import importlib
 import subprocess
 
+
+def install_and_check(package):
+    try:
+        importlib.import_module(package)
+    except:
+        subprocess.call([sys.executable, "-m", "pip", "install", package],  stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
+        sys.stdout.write('.')
+        sys.stdout.flush()
+try:
+    import requests
+except:
+    install_and_check('requests')
 
 def download(url: str, dest_folder: str):
     if not os.path.exists(dest_folder):
@@ -28,6 +39,7 @@ def download(url: str, dest_folder: str):
 
 
 
+
 cwd = os.getcwd()
 
 print('LightOS installer')
@@ -45,15 +57,6 @@ else:
 
 packages_to_install = ['os', 'colorama', 'threading', 'random', 'shutil', 'pythonping', 'zipfile','yfinance', 'msvcrt', 'cryptography', 'socket', 'select', 'errno', 'urllib', 'pynput', 'sympy']
 
-
-
-def install_and_check(package):
-    try:
-        importlib.import_module(package)
-    except:
-        subprocess.call([sys.executable, "-m", "pip", "install", package],  stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
-        sys.stdout.write('.')
-        sys.stdout.flush()
 
 
 sys.stdout.write('Installing packages...')
