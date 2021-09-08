@@ -6,17 +6,12 @@ import importlib
 import subprocess
 
 
-def install_and_check(package):
-    try:
-        importlib.import_module(package)
-    except:
-        subprocess.call([sys.executable, "-m", "pip", "install", package],  stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
-        sys.stdout.write('.')
-        sys.stdout.flush()
+
 try:
     import requests
 except:
-    install_and_check('requests')
+    subprocess.call([sys.executable, "-m", "pip", "install", "requests"],  stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
+    import requests
 
 def download(url: str, dest_folder: str):
     if not os.path.exists(dest_folder):
@@ -37,7 +32,13 @@ def download(url: str, dest_folder: str):
     else:  # HTTP status code 4XX/5XX
         print("Download failed: status code {}\n{}".format(r.status_code, r.text))
 
-
+def install_and_check(package):
+    try:
+        importlib.import_module(package)
+    except:
+        subprocess.call([sys.executable, "-m", "pip", "install", package],  stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
+        sys.stdout.write('.')
+        sys.stdout.flush()
 
 
 cwd = os.getcwd()
