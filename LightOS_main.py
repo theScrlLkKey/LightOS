@@ -4,6 +4,7 @@ from os import walk
 import os
 import zlib
 import shutil
+import pickle
 import subprocess
 import sys
 from pynput.keyboard import Listener, Key
@@ -71,7 +72,7 @@ games_menu = '''█████████████████████�
 settings_menu = '''███████████████████████████████████████████████████████████████████
 █00:00 AM                                                 LIGHT OS█  
 ███████████████████████████████████████████████████████████████████
-█SETTINGS:                                                        █
+█SETTINGS:                                               8.4B-SSET█
 █1. RETURN TO MAIN MENU                                           █
 █2. ON/OFF TOGGLE               CURRENT VALUE:                    █
 █3. FOUR LEVEL SLIDER           CURRENT VALUE:                    █
@@ -583,10 +584,8 @@ def switchscr(scrnum):
         inputchar('\033[11A')
         inputchar('\033[10;39H')
 
-        with open(f'{name}_settings.txt', 'w+') as sett:
-            sett.write(f'''mes_setting = '{mes_setting}' 
-onoff_setting = {onoff_setting}
-fo_setting =  {fo_setting}''')
+        with open(f'{name}_settings.lset', 'wb') as f:
+            pickle.dump([onoff_setting, fo_setting, mes_setting], f)
 
         inputchar('\033[2J')
         type(settings_menu)
@@ -655,10 +654,8 @@ fo_setting =  {fo_setting}''')
         type(loadingscr)
         inputchar('\033[11A')
         inputchar('\033[10;39H')
-        with open(f'{name}_settings.txt', 'w+') as sett:
-            sett.write(f'''mes_setting = '{mes_setting}'
-onoff_setting = {onoff_setting}
-fo_setting =  {fo_setting}''')
+        with open(f'{name}_settings.lset', 'wb') as f:
+            pickle.dump([onoff_setting, fo_setting, mes_setting], f)
 
         inputchar('\033[2J')
         type(settings_menu)
@@ -708,10 +705,8 @@ fo_setting =  {fo_setting}''')
         type(loadingscr)
         inputchar('\033[11A')
         inputchar('\033[10;39H')
-        with open(f'{name}_settings.txt', 'w+') as sett:
-            sett.write(f'''mes_setting = '{mes_setting}' 
-onoff_setting = {onoff_setting}
-fo_setting =  {fo_setting}''')
+        with open(f'{name}_settings.lset', 'wb') as f:
+            pickle.dump([onoff_setting, fo_setting, mes_setting], f)
 
         inputchar('\033[2J')
         inputchar('\033[2J')
@@ -1024,7 +1019,7 @@ def decrypt_emb2(data, password):
     return rdat
 
 
-
+# wtf is this????????
 #boot
 # print('Initializing Display Drivers')
 # i = 16
@@ -1087,6 +1082,11 @@ inputchar('\033[5;23H')
 name = input('USERNAME: ').upper()
 inputchar('\033[7;23H')
 passwd = input('PASSWORD: ')
+inputchar('\033[2J')
+type(loadingscr)
+inputchar('\033[11A')
+inputchar('\033[10;39H')
+
 if name + '_pwh' in usenmls:
     if usenmls[name + '_pwh'] != str(zlib.crc32(passwd.encode("utf-8"))):
         inputchar('\033[9;23H')
@@ -1105,7 +1105,7 @@ else:
     with open('data.txt', 'r') as data:
         decdat = decrypt_emb2(data.read(), 'gtTfs7Adh6G3j835GkdsJFYU86389llke')
         exec(decdat)
-    # not used:
+    # not used, guess why:
     # with open('data.txt', 'a') as data:
     #     data.write(f'usenmls["{name}_pw"] = "{passwd}" \n')
 
@@ -1132,18 +1132,35 @@ except FileNotFoundError:
 
 
 console_log('password for ' + name + 'was correct')
-# load settings
+# load settings (old way, not used as this is raw code being stored as a text file)
+# try:
+#     with open(f'{name}_settings.txt', 'r') as sett:
+#         exec(sett.read())
+# except:
+#     with open(f'{name}_settings.txt', 'w+') as sett:
+#         sett.write('''mes_setting = ''
+# onoff_setting = False
+# fo_setting = 1 ''')
+#     mes_setting = ''
+#     onoff_setting = False
+#     fo_setting = 1
+
+# new way, uses pickle
 try:
-    with open(f'{name}_settings.txt', 'r') as sett:
-        exec(sett.read())
+    with open(f'{name}_settings.lset', 'rb') as f:
+        onoff_setting, fo_setting, mes_setting = pickle.load(f)
 except:
-    with open(f'{name}_settings.txt', 'w+') as sett:
-        sett.write('''mes_setting = '' 
-onoff_setting = False
-fo_setting = 1 ''')
-    mes_setting = ''
-    onoff_setting = False
-    fo_setting = 1
+    # try to load legacy settings file and convert
+    try:
+        with open(f'{name}_settings.txt', 'r') as sett:
+            exec(sett.read())
+    except:
+        mes_setting = ''
+        onoff_setting = False
+        fo_setting = 1
+    with open(f'{name}_settings.lset', 'wb') as f:
+        pickle.dump([onoff_setting, fo_setting, mes_setting], f)
+
 
 inputchar('\033[2J')
 type(main_menu)
