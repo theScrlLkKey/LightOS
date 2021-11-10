@@ -19,7 +19,7 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 
 
-#menus
+# menus
 
 main_menu = '''███████████████████████████████████████████████████████████████████
 █00:00 AM       WELCOME,                        LIGHT OS MAIN MENU█  
@@ -141,7 +141,7 @@ external_prog = '''████████████████████�
 █00:00 AM                                                 LIGHT OS█  
 ███████████████████████████████████████████████████████████████████
 '''
-#defs
+# defs
 name = 'USER'
 colorama.init()
 def write_key():
@@ -167,6 +167,8 @@ def console_log(log_text):
 
 
 def on_press(key):
+    # old code for a interactive version where you could move cursor with arrow keys like a mouse
+    # menu key will try to exit to the main menu (dosn't work in external programs)
     global key_jp
     if hasattr(key, 'char'):  # Write the character pressed if available
          key_jp = str(key.char)
@@ -1089,7 +1091,7 @@ inputchar('\033[10;39H')
 
 if name + '_pwh' in usenmls:
     if usenmls[name + '_pwh'] != str(zlib.crc32(passwd.encode("utf-8"))):
-        inputchar('\033[9;23H')
+        inputchar('\033[8;23H')
         type(f'WRONG PASSWORD FOR {name}!')
         console_log('password for '+name+'was not correct')
         inputchar('\033[10;23H')
