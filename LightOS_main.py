@@ -72,9 +72,9 @@ games_menu = '''█████████████████████�
 settings_menu = '''███████████████████████████████████████████████████████████████████
 █00:00 AM                                                 LIGHT OS█  
 ███████████████████████████████████████████████████████████████████
-█SETTINGS:                                               8.4B-SSET█
+█SETTINGS:                                               8.6B-EXTS█
 █1. RETURN TO MAIN MENU                                           █
-█2. ON/OFF TOGGLE               CURRENT VALUE:                    █
+█2. LOAD STARTUP APPS           CURRENT VALUE:                    █
 █3. FOUR LEVEL SLIDER           CURRENT VALUE:                    █
 █4. CUSTOM MESSAGE              CURRENT VALUE:                    █
 ███████████████████████████████████████████████████████████████████ 
@@ -153,6 +153,7 @@ def write_key():
     return k
 enckey = write_key()
 
+versionstr = '8.6B-EXTS'
 
 def console_log(log_text):
     # UNCOMMENT THIS (and the block in LightOS.py) TO ENABLE CONSOLE LOGGING
@@ -206,6 +207,7 @@ def switchscr(scrnum):
     global mes_setting
     global onoff_setting
     global fo_setting
+    global startup_setting
     if scrnum == '1':
         inputchar('\033[2J')
         type(main_menu)
@@ -539,9 +541,9 @@ def switchscr(scrnum):
         inputchar('\033[2;26H')
         type('LIGHTOS SETTINGS')
         inputchar('\033[6;48H')
-        if onoff_setting:
+        if startup_setting:
             type('ON')
-        elif not onoff_setting:
+        elif not startup_setting:
             type('OFF')
         else:
             type('')
@@ -568,7 +570,7 @@ def switchscr(scrnum):
         inputchar('\033[3C')
         inputchar('\033[2B')
         inputchar('\033[2;26H')
-        type('GENERIC ON/OFF SETTING')
+        type('LOAD STARTUP APPS')
         inputchar('\033[5;2H')
         type('1. ON')
         inputchar('\033[7;2H')
@@ -578,16 +580,16 @@ def switchscr(scrnum):
         inputchar('\033[10;2H')
         settocg = input('SELECTION: ')
         if settocg == '1':
-            onoff_setting = True
+            startup_setting = True
         elif settocg == '2':
-            onoff_setting = False
+            startup_setting = False
         inputchar('\033[2J')
         type(loadingscr)
         inputchar('\033[11A')
         inputchar('\033[10;39H')
 
         with open(f'{name}_settings.lset', 'wb') as f:
-            pickle.dump([onoff_setting, fo_setting, mes_setting], f)
+            pickle.dump([onoff_setting, fo_setting, mes_setting, startup_setting], f)
 
         inputchar('\033[2J')
         type(settings_menu)
@@ -597,9 +599,9 @@ def switchscr(scrnum):
         inputchar('\033[2;26H')
         type('LIGHTOS SETTINGS')
         inputchar('\033[6;48H')
-        if onoff_setting:
+        if startup_setting:
             type('ON')
-        elif not onoff_setting:
+        elif not startup_setting:
             type('OFF')
         else:
             type('')
@@ -657,7 +659,7 @@ def switchscr(scrnum):
         inputchar('\033[11A')
         inputchar('\033[10;39H')
         with open(f'{name}_settings.lset', 'wb') as f:
-            pickle.dump([onoff_setting, fo_setting, mes_setting], f)
+            pickle.dump([onoff_setting, fo_setting, mes_setting, startup_setting], f)
 
         inputchar('\033[2J')
         type(settings_menu)
@@ -667,9 +669,9 @@ def switchscr(scrnum):
         inputchar('\033[2;26H')
         type('LIGHTOS SETTINGS')
         inputchar('\033[6;48H')
-        if onoff_setting:
+        if startup_setting:
             type('ON')
-        elif not onoff_setting:
+        elif not startup_setting:
             type('OFF')
         else:
             type('')
@@ -708,7 +710,7 @@ def switchscr(scrnum):
         inputchar('\033[11A')
         inputchar('\033[10;39H')
         with open(f'{name}_settings.lset', 'wb') as f:
-            pickle.dump([onoff_setting, fo_setting, mes_setting], f)
+            pickle.dump([onoff_setting, fo_setting, mes_setting, startup_setting], f)
 
         inputchar('\033[2J')
         inputchar('\033[2J')
@@ -720,9 +722,9 @@ def switchscr(scrnum):
         type('LIGHTOS SETTINGS')
         inputchar('\033[6;48H')
         inputchar('\033[6;48H')
-        if onoff_setting:
+        if startup_setting:
             type('ON')
-        elif not onoff_setting:
+        elif not startup_setting:
             type('OFF')
         else:
             type('')
@@ -1020,6 +1022,25 @@ def decrypt_emb2(data, password):
         exit()
     return rdat
 
+# fallback mainloop if loaded one breaks
+def mainloop():
+    timup.start()
+    time.sleep(0.1)
+    while True:
+        try:
+            while curmen != 'ex_prog':
+                inputchar('\033[10;2H')
+                usrsel = input('ENTER SELECTION: ')
+                inputchar('\033[10;1H')
+                type('█                                                                 █')
+                if usrsel.lower() == 'antigravity':
+                    import antigravity
+                console_log('running program')
+                switchscr(str(usrsel))
+                console_log('done running '+usrsel)
+        except:
+            pass
+
 
 # wtf is this????????
 #boot
@@ -1103,6 +1124,16 @@ else:
     type(loadingscr)
     inputchar('\033[11A')
     inputchar('\033[10;39H')
+
+    # set up user directory
+    # os.mkdir(f'{str(zlib.crc32(name.encode("utf-8")))}')
+    # os.mkdir(f'{str(zlib.crc32(name.encode("utf-8")))}/userdir')
+    # os.mkdir(f'{str(zlib.crc32(name.encode("utf-8")))}/apps')
+    # # os.mkdir(f'{str(zlib.crc32(name.encode("utf-8")))}/log')
+    # os.mkdir(f'{str(zlib.crc32(name.encode("utf-8")))}/plugins')
+    # os.mkdir(f'{str(zlib.crc32(name.encode("utf-8")))}/startup')
+
+
     encrypt_emb2('data.txt', decdat + f'usenmls["{name}_pwh"] = "{zlib.crc32(passwd.encode("utf-8"))}" \n', enckey, 'gtTfs7Adh6G3j835GkdsJFYU86389llke')
     with open('data.txt', 'r') as data:
         decdat = decrypt_emb2(data.read(), 'gtTfs7Adh6G3j835GkdsJFYU86389llke')
@@ -1110,7 +1141,7 @@ else:
     # not used, guess why:
     # with open('data.txt', 'a') as data:
     #     data.write(f'usenmls["{name}_pw"] = "{passwd}" \n')
-
+console_log('password for ' + name + 'was correct')
 
 # store key
 try:
@@ -1122,7 +1153,7 @@ try:
             enckeyff = enckeyffte
             enckeyfftf = password_encrypt(enckeyff.encode("utf-8"), hashlib.sha256(passwd.encode("utf-8")).hexdigest()).decode("utf-8")
             encrypt_emb2(f'{str(zlib.crc32(name.encode("utf-8")))}.kdt', enckeyfftf, enckey, 'hjsgadfjhsfaAHGFYJ7986278KJHhfsK')
-        console_log(f'hash of private key is: {str(zlib.crc32(enckeyff.encode("utf-8")))}')
+        console_log(f'hash of key is: {str(zlib.crc32(enckeyff.encode("utf-8")))}')
 
 except FileNotFoundError:
     enckeyff = write_key().decode("utf-8")
@@ -1130,10 +1161,10 @@ except FileNotFoundError:
         data.write('')
     enckeyfftf = password_encrypt(enckeyff.encode("utf-8"), hashlib.sha256(passwd.encode("utf-8")).hexdigest()).decode("utf-8")
     encrypt_emb2(f'{str(zlib.crc32(name.encode("utf-8")))}.kdt', enckeyfftf, enckey, 'hjsgadfjhsfaAHGFYJ7986278KJHhfsK')
-    console_log(f'hash of private key is: {str(zlib.crc32(enckeyff.encode("utf-8")))}')
+    console_log(f'hash of key is: {str(zlib.crc32(enckeyff.encode("utf-8")))}')
 
 
-console_log('password for ' + name + 'was correct')
+
 # load settings (old way, not used as this is raw code being stored as a text file)
 # try:
 #     with open(f'{name}_settings.txt', 'r') as sett:
@@ -1150,18 +1181,67 @@ console_log('password for ' + name + 'was correct')
 # new way, uses pickle
 try:
     with open(f'{name}_settings.lset', 'rb') as f:
-        onoff_setting, fo_setting, mes_setting = pickle.load(f)
+        onoff_setting, fo_setting, mes_setting, startup_setting = pickle.load(f)
 except:
-    # try to load legacy settings file and convert
+    # try to load legacy settings file and convert, also start with extensions disabled
+    startup_setting = False
     try:
         with open(f'{name}_settings.txt', 'r') as sett:
             exec(sett.read())
+        # delete legacy setting
+        os.remove(f'{name}_settings.txt')
     except:
+        startup_setting = False
         mes_setting = ''
         onoff_setting = False
         fo_setting = 1
     with open(f'{name}_settings.lset', 'wb') as f:
-        pickle.dump([onoff_setting, fo_setting, mes_setting], f)
+        pickle.dump([onoff_setting, fo_setting, mes_setting, startup_setting], f)
+
+
+# load startup plugins/apps
+if 'noloadstartups' in str(sys.argv):
+    pass
+elif 'loadstartups' in str(sys.argv) or startup_setting:
+    files = []
+    for (dirpath, dirnames, filenames) in walk('startup'):
+        files.extend(filenames)
+        break
+    filenumls = {}
+    startloadloop1 = 0
+    for file in files:
+        filenumls[str(startloadloop1)] = file
+        startloadloop1 += 1
+    startloadloop2 = 0
+    if startloadloop1 > 0:
+        inputchar('\033[12;1H')
+    for file in files:
+        try:
+            dummy, plugn = filenumls[str(startloadloop2)].split('--')
+            plugntr = plugn.replace(".py", "")
+            # input(f'Press enter to load {plugntr}...')
+            type(f'Loading {plugntr}...')
+            with open(f'startup/{filenumls[str(startloadloop2)]}', 'r', encoding='utf8') as load:
+                loaddat = load.read()
+            try:
+                exec(loaddat)
+                print(f' ({plugntr} loaded!)')
+            except Exception as err:
+                print(f' ({plugntr} not started, {str(err)})')
+            startloadloop2 += 1
+        except:
+            startloadloop2 += 1
+    if startloadloop2 > 0:
+        # input(f'Press enter to load LightOS with {startloadloop2} plugins started...')
+        print(f'Loading LightOS with {startloadloop2} plugins active... ')
+
+    time.sleep(2)
+    filenumls = {}
+    files = []
+else:
+    pass
+
+
 
 
 inputchar('\033[2J')
@@ -1175,8 +1255,7 @@ inputchar('\033[2;49H')
 type('TYPE EXIT TO QUIT ')
 tuploc = '10;19H'
 timup = threading.Thread(target=strttmup, args=())
-timup.start()
-time.sleep(0.1)
+
 # sys.stdout.write('\033[10;2H ENTER SELECTION: ')
 # usrsel = str(sys.stdin.read(2))
 curmen = 'main'
@@ -1185,17 +1264,6 @@ curmen = 'main'
 lisn = threading.Thread(target=strtlstn, args=())
 lisn.start()
 console_log('now in main loop')
-while True:
-    try:
-        while curmen != 'ex_prog':
-            inputchar('\033[10;2H')
-            usrsel = input('ENTER SELECTION: ')
-            inputchar('\033[10;1H')
-            type('█                                                                 █')
-            if usrsel.lower() == 'antigravity':
-                import antigravity
-            console_log('running program')
-            switchscr(str(usrsel))
-            console_log('done running '+usrsel)
-    except:
-        continue
+
+mainloop()
+
