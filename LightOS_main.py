@@ -156,15 +156,15 @@ enckey = write_key()
 versionstr = '8.6B-EXTS'
 
 def console_log(log_text):
-    # UNCOMMENT THIS (and the block in LightOS.py) TO ENABLE CONSOLE LOGGING
-    #____________________________________________
-    try:
-        with open('log/log.txt', 'a+') as data:
-            data.write(log_text + '\n')
-    except:
+    if 'enableconsolelog' in str(sys.argv):
+        try:
+            with open('log/log.txt', 'a+') as data:
+                data.write(log_text + '\n')
+        except:
+            pass
+    else:
         pass
-    # ____________________________________________
-    pass
+
 
 
 def on_press(key):
